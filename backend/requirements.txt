@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-multipart
+pytesseract
+Pillow
+gTTS
+google-generativeai
+openai
+openai
+supabase
+pdf2image
+PyPDF2
+python-dotenv

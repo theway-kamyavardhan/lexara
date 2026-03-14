@@ -1,0 +1,59 @@
+{
+  "Math": {
+    "original": "A train travels 120 km in 2 hours. What is its average speed?",
+    "simplified": "A train goes 120 kilometers. It takes 2 hours. How fast is it going on average?",
+    "steps": [
+      "Step 1: Distance = 120 km",
+      "Step 2: Time = 2 hours",
+      "Step 3: Formula -> Speed = Distance ÷ Time",
+      "Step 4: Calculate -> 120 ÷ 2 = 60",
+      "Step 5: Answer -> 60 km/h"
+    ]
+  },
+  "Algebra": {
+    "original": "Solve the quadratic equation x² + 5x + 6 = 0",
+    "simplified": "Find the values of x that make the equation x² + 5x + 6 = 0 true.",
+    "steps": [
+      "Step 1: We need to find two numbers that multiply to 6 and add to 5.",
+      "Step 2: The numbers 2 and 3 multiply to 6 (2 × 3 = 6).",
+      "Step 3: The numbers 2 and 3 add to 5 (2 + 3 = 5).",
+      "Step 4: Write as (x + 2)(x + 3) = 0.",
+      "Step 5: Solve -> x = -2 or x = -3."
+    ]
+  },
+  "Physics": {
+    "original": "A car accelerates from rest to 20 m/s in 5 seconds. Find the acceleration.",
+    "simplified": "A car starts from 0 m/s. It speeds up to 20 m/s. It takes 5 seconds. What is the acceleration?",
+    "steps": [
+      "Step 1: Initial speed = 0 m/s",
+      "Step 2: Final speed = 20 m/s",
+      "Step 3: Time = 5 seconds",
+      "Step 4: Formula -> Acceleration = (Final speed - Initial speed) ÷ Time",
+      "Step 5: Calculate -> (20 - 0) ÷ 5 = 4",
+      "Step 6: Answer -> 4 m/s²"
+    ]
+  },
+  "English": {
+    "original": "Explain the theme of the poem \"The Road Not Taken\".",
+    "simplified": "What is the main idea of the poem \"The Road Not Taken\"?",
+    "steps": [
+      "Step 1: The poem is about making choices in life.",
+      "Step 2: The paths in the woods represent different choices you can make.",
+      "Step 3: The poet chooses the path that fewer people have taken.",
+      "Step 4: This shows that making your own choices can change your life."
+    ]
+  },
+  "Word Problem": {
+    "original": "If a shopkeeper buys an item for ₹200 and sells it for ₹250, find the profit percentage.",
+    "simplified": "A shopkeeper buys a toy for ₹200. He sells it for ₹250. What is the percentage of his profit?",
+    "steps": [
+      "Step 1: Cost Price = ₹200",
+      "Step 2: Selling Price = ₹250",
+      "Step 3: Finding Profit -> Profit = Selling Price - Cost Price",
+      "Step 4: Calculate Profit -> 250 - 200 = 50",
+      "Step 5: Formula -> Profit Percentage = (Profit ÷ Cost Price) × 100",
+      "Step 6: Calculate -> (50 ÷ 200) × 100 = 25",
+      "Step 7: Answer -> 25%"
+    ]
+  }
+}

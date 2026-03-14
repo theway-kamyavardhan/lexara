@@ -1,0 +1,260 @@
+nohup: ignoring input
+INFO:     Will watch for changes in these directories: ['/home/kamyavardhan/Desktop/Dyslex/lexara-ai/backend']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [111767] using StatReload
+INFO:     Started server process [111771]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Supabase Insert Error: {'message': 'JSON could not be generated', 'code': 401, 'hint': 'Refer to full message for details', 'details': 'b\'{"message":"Invalid API key","hint":"Double check the provided API key for typos. This API key might also be owned by another Supabase project."}\''}
+INFO:     127.0.0.1:48686 - "POST /api/upload_and_process HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48678 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48692 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57218 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57226 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57228 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57234 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57236 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57248 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57252 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57260 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57270 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49026 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49032 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49034 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49042 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49054 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49070 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49072 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49076 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49080 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49088 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33916 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33924 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33932 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33946 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33962 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33968 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33978 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33980 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33988 - "GET /api/progress/87fac7c0-3bc0-48da-8bcd-4c8c81806d66 HTTP/1.1" 200 OK
+OpenAI API Error on page 20: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-8tqyjTYbKfaazvpDcqWfOKZ5 on tokens per min (TPM): Limit 200000, Used 200000, Requested 1029. Please try again in 308ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
+OpenAI API Error on page 19: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-8tqyjTYbKfaazvpDcqWfOKZ5 on tokens per min (TPM): Limit 200000, Used 200000, Requested 1029. Please try again in 308ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
+OpenAI API Error on page 21: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-8tqyjTYbKfaazvpDcqWfOKZ5 on tokens per min (TPM): Limit 200000, Used 200000, Requested 1029. Please try again in 308ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
+OpenAI API Error on page 22: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-8tqyjTYbKfaazvpDcqWfOKZ5 on tokens per min (TPM): Limit 200000, Used 200000, Requested 1029. Please try again in 308ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
+OpenAI API Error on page 23: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-8tqyjTYbKfaazvpDcqWfOKZ5 on tokens per min (TPM): Limit 200000, Used 200000, Requested 1029. Please try again in 308ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
+OpenAI API Error on page 6: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-8tqyjTYbKfaazvpDcqWfOKZ5 on tokens per min (TPM): Limit 200000, Used 200000, Requested 1029. Please try again in 308ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
+OpenAI API Error on page 7: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-8tqyjTYbKfaazvpDcqWfOKZ5 on tokens per min (TPM): Limit 200000, Used 200000, Requested 1029. Please try again in 308ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
+OpenAI API Error on page 3: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-8tqyjTYbKfaazvpDcqWfOKZ5 on tokens per min (TPM): Limit 200000, Used 200000, Requested 1029. Please try again in 308ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
+OpenAI API Error on page 9: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-8tqyjTYbKfaazvpDcqWfOKZ5 on tokens per min (TPM): Limit 200000, Used 200000, Requested 1029. Please try again in 308ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
+OpenAI API Error on page 17: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-8tqyjTYbKfaazvpDcqWfOKZ5 on tokens per min (TPM): Limit 200000, Used 200000, Requested 1029. Please try again in 308ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
+OpenAI API Error on page 18: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-8tqyjTYbKfaazvpDcqWfOKZ5 on tokens per min (TPM): Limit 200000, Used 200000, Requested 1029. Please try again in 308ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
+Supabase Insert Error: {'message': 'JSON could not be generated', 'code': 401, 'hint': 'Refer to full message for details', 'details': 'b\'{"message":"Invalid API key","hint":"Double check the provided API key for typos. This API key might also be owned by another Supabase project."}\''}
+INFO:     127.0.0.1:56660 - "POST /api/upload_and_process HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56660 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60856 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "GET /api/progress/e4b42ba7-9bb3-444d-a530-5534118f9662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40402 - "OPTIONS /api/export_pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40416 - "POST /api/export_pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49108 - "POST /api/export_pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42272 - "POST /api/export_pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41034 - "OPTIONS /api/tts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41050 - "POST /api/tts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41058 - "GET /static/942d992a552b411faa58eb521e3aa467.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41050 - "POST /api/tts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55276 - "GET /static/6bbf058ff6f5460cba9809934bf0d537.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41050 - "POST /api/tts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55286 - "GET /static/a0832534e96b47d0bfe2190c924d0dd1.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:35400 - "OPTIONS /api/export_pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35414 - "POST /api/export_pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60172 - "OPTIONS /api/tts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60188 - "POST /api/tts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60190 - "GET /static/c136a2672895407ab483a15285685952.mp3 HTTP/1.1" 206 Partial Content
+WARNING:  StatReload detected changes in 'services/ai_processor.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [111771]
+INFO:     Started server process [117603]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

@@ -1,0 +1,36 @@
+nohup: ignoring input
+
+> frontend@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.28.77:3000
+- Environments: .env.local
+
+✓ Starting...
+✓ Ready in 714ms
+ GET / 200 in 568ms (compile: 314ms, render: 255ms)
+ HEAD / 200 in 51ms (compile: 6ms, render: 45ms)
+ HEAD / 200 in 58ms (compile: 6ms, render: 52ms)
+ GET / 200 in 53ms (compile: 5ms, render: 48ms)
+ GET / 200 in 127ms (compile: 13ms, render: 114ms)
+✓ Compiled in 1421ms
+ GET / 200 in 191ms (compile: 59ms, render: 132ms)
+✓ Compiled in 383ms
+ GET / 200 in 188ms (compile: 50ms, render: 139ms)
+✓ Compiled in 156ms
+ GET / 200 in 230ms (compile: 69ms, render: 161ms)
+ GET / 200 in 97ms (compile: 15ms, render: 81ms)
+ GET / 200 in 75ms (compile: 9ms, render: 66ms)
+✓ Compiled in 70ms
+✓ Compiled in 51ms
+✓ Compiled in 324ms
+✓ Compiled in 56ms
+✓ Compiled in 104ms
+✓ Compiled in 182ms
+ GET / 200 in 439ms (compile: 313ms, render: 126ms)
+ GET / 200 in 438ms (compile: 386ms, render: 52ms)
+ GET / 200 in 162ms (compile: 5ms, render: 158ms)
+ GET / 200 in 49ms (compile: 4ms, render: 45ms)
+✓ Compiled in 71ms

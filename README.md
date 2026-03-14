@@ -1,0 +1,102 @@
+# Lexara Air - AI Accessibility Engineering for Dyslexic Cognitive Scaffolding 🌌
+
+Lexara Air is a cutting-edge, visually stunning educational platform designed specifically to aid students with Dyslexia and Cognitive processing disorders. Leveraging state-of-the-art Generative AI (GPT-4o Vision & Audio), Lexara automatically parses complex examination papers, test documents, and textbook pages, seamlessly breaking them down into hyper-simplified cognitive checkpoints.
+
+### Key Features
+1. **Intelligent PDF Parsing**: Upload any exam or document and instantly receive cognitively chunked data isolating distinct questions. Our backend Vision architecture cleanly extracts unstructured text.
+2. **AI Complexity Analyzer**: Automatically detects the cognitive load (Easy, Medium, Hard) based on sentence length, word complexity, concept density, and formulas.
+3. **Dyslexia-Optimized Simplification**: Bypasses the complex grammatical jargon of exams and re-writes the question in high-legibility syntax without giving away the answer. Questions are formatted in a clean, vertical Single-Column Layout with spacing designed to prevent visual crowding.
+4. **Structured Cognitive Steps**: Complex questions are broken down into bite-sized actionable steps (e.g., "Step 1 Identify values"), minimizing working memory overload.
+5. **Lexara Audio Pipeline**: Every single word is dynamically narrated using advanced AI Text-To-Speech. The syntax is padded for pacing, and the speed is globally controllable to aid in auditory processing delays.
+6. **Instant Translation Engine**: Lexara handles complex cognitive loads across languages effortlessly. Instantly translate the entire examination paper into 9+ rich Indian regional dialects (Hindi, Marathi, Bengali, Tamil, Telugu, Gujarati, Kannada, Malayalam, Punjabi) without losing context.
+7. **Certified Dyslexic Typography Engine**: With the toggle of a button, the entire beautiful UI morphs into a High-Contrast `OpenDyslexic` font layout. The letter-spacing, font size, and line-heights mathematically adjust to maximize saccadic eye movement legibility.
+8. **Cinematic Focus Mode**: Dive into a distraction-free, full-screen environment (inspired by VisionOS) that isolates one cognitive step at a time to prevent wandering attention. Includes a built-in 4-7-8 Breathing Exercise overlay to reduce test anxiety.
+9. **Dyslexic PDF Auto-Generation**: Hate screens? Click *Export as Dyslexic PDF* on any uploaded exam, and a custom Python backend engine redraws the entire unstructured document into a beautifully aligned, Dyslexic-Font-embedded PDF file for instant offline download and printing.
+10. **Breathtaking UI**: Who said accessible tech has to be ugly? Lexara Air features smooth Framer Motion spring physics, liquid background blobs, and a premium glassmorphic design system.
+
+---
+
+## 🚀 Running Lexara Locally
+
+Lexara Air is a Monorepo composed of a **Next.js 15 Frontend** and a **Python FastAPI Backend**.
+
+### 1. Backend Setup (FastAPI + OpenAI)
+You will need an OpenAI developer account and API key to power the Vision, Translation, and Audio models.
+
+```bash
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Create a `.env` file inside the `/backend` folder. **Do not commit this file!**
+```env
+OPENAI_API_KEY=sk-proj-your-api-key-here
+```
+
+Start the Python Server:
+```bash
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+*Note: The backend will run on `http://localhost:8000`.*
+
+### 2. Frontend Setup (Next.js 15 + Tailwind 4)
+Open a new terminal window side-by-side with your running backend.
+
+```bash
+cd frontend
+npm install
+```
+
+Create a `.env.local` file inside the `/frontend` folder:
+```env
+NEXT_PUBLIC_AI_API_URL=http://localhost:8000
+```
+
+Start the Frontend Server:
+```bash
+npm run dev
+```
+*Navigate to `http://localhost:3000` to interact with Lexara Air!*
+
+---
+
+## 🌍 Steps to Deploy for Production (Hackathon/Public)
+
+When moving this project from your Local Computer to the public internet, follow these deployment steps:
+
+### 1. Pushing to GitHub
+You must first push your code to a secure GitHub repository. **Ensure your `.gitignore` is active so you do not leak your OpenAI keys!**
+```bash
+git init
+git add .
+git commit -m "Initial Launch of Lexara Air"
+git branch -M main
+git remote add origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME.git
+git push -u origin main
+```
+
+### 2. Deploying the Backend (Render.com)
+The Python API must be hosted on a persistent server so the Frontend can talk to it remotely.
+1. Create a free account at [Render.com](https://render.com).
+2. Click **New +** -> **Web Service**.
+3. Connect your GitHub account and select your Lexara repository.
+4. Set the **Root Directory** to `backend`.
+5. Set the **Build Command** to: `pip install -r requirements.txt`
+6. Set the **Start Command** to: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+7. Expand the **Environment Variables** section and meticulously add: `OPENAI_API_KEY` with your secret key.
+8. Click Deploy. Once it finishes building, Render will give you a public URL (e.g. `https://lexara-backend.onrender.com`).
+
+### 3. Deploying the Frontend (Vercel.com)
+1. Create a free account at [Vercel.com](https://vercel.com).
+2. Click **Add New Project** and import the exact same Lexara GitHub repository.
+3. Vercel will auto-detect Next.js. Set the **Root Directory** to `frontend`.
+4. Open the **Environment Variables** tab.
+5. Add `NEXT_PUBLIC_AI_API_URL` and paste the public URL you got from Render! *(e.g. `https://lexara-backend.onrender.com`)*
+6. Click Deploy. Vercel will build the frontend and give you a beautiful public website link!
+
+*(Note: Whenever you push new code to GitHub `main`, Vercel and Render will automatically re-build and update your live website!)*
+
+---
+*Built with ❤️ for accessible education.*
