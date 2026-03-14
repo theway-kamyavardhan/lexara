@@ -1,7 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-appleDark: #000000;
+  --color-appleGray: #1d1d1f;
+  --color-appleLightGray: #f5f5f7;
+  --color-accent: #0071e3;
+  --color-success: #34c759;
+
+  --font-dyslexic: "OpenDyslexic", sans-serif;
+  
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  --shadow-glass-hover: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  --shadow-glowing: 0 0 40px -10px rgba(0, 113, 227, 0.5);
+
+  --animate-aurora: aurora 20s linear infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes aurora {
+    0%, 100% {
+      transform: rotate(0deg) scale(1.5);
+    }
+    50% {
+      transform: rotate(180deg) scale(2);
+    }
+  }
+}
 
 @font-face {
   font-family: 'OpenDyslexic';
@@ -18,41 +44,120 @@
 }
 
 :root {
-  --background: #FDFBF7; /* Warm cream background reduces glare */
-  --foreground: #2B2A29; /* Off-black for lower contrast harshness */
+  --background: #f5f5f7;
+  --foreground: #1d1d1f;
+}
+
+/* Force dark theme via class regardless of OS preference */
+html.dark, .dark {
+  --background: #05050A !important; /* Apple Midnight Blue/Black */
+  --foreground: #f5f5f7 !important;
+  color-scheme: dark !important;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #18181A;
-    --foreground: #E5E5E5;
+    --background: #05050A;
+    --foreground: #f5f5f7;
   }
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  /* Default to a highly legible sans, let user toggle OpenDyslexic */
-  font-family: 'Inter', sans-serif; 
-  line-height: 1.8; /* Increased line spacing */
-  letter-spacing: 0.02em; /* Increased letter spacing */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
 }
 
+/* Base Dyslexic Mode Override */
 .dyslexic-mode {
   font-family: 'OpenDyslexic', sans-serif !important;
-  letter-spacing: 0.05em;
-  line-height: 2;
-  word-spacing: 0.1em;
+  letter-spacing: 0.05em !important;
+  line-height: 2 !important;
+  word-spacing: 0.15em !important;
 }
 
+/* Apple Premium Glassmorphism */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
 }
 
 .dark .glass-panel {
-  background: rgba(30, 30, 30, 0.6);
-  border: 1px solid rgba(80, 80, 80, 0.4);
+  background: rgba(15, 20, 30, 0.65); /* Dark Midnight Tint */
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Liquid Lens / Aurora Glow Backgrounds */
+.liquid-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  background-color: var(--background);
+  transition: background-color 0.5s ease;
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.6;
+  mix-blend-mode: screen;
+}
+
+.dark .aurora-blob {
+  opacity: 0.4;
+}
+
+.blob-1 {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(0,113,227,0.8) 0%, rgba(0,0,0,0) 70%);
+  animation: aurora 25s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+  bottom: -20%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(142,67,231,0.6) 0%, rgba(0,0,0,0) 70%);
+  animation: aurora 30s ease-in-out infinite alternate-reverse;
+}
+
+.blob-3 {
+  top: 40%;
+  left: 30%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(52,199,89,0.4) 0%, rgba(0,0,0,0) 70%);
+  animation: aurora 35s ease-in-out infinite alternate;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 150, 150, 0.5);
 }
