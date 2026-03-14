@@ -6,54 +6,91 @@ import confetti from "canvas-confetti";
 import { 
   Upload, Sparkles, ArrowRight, Play, Pause, ChevronRight, ChevronLeft, 
   Volume2, Search, Type, Maximize2, Minimize2, X, AlertCircle,
-  BookOpen, Settings, FileText, Globe, Atom, Binary, Loader2, Award, Heart
+  BookOpen, Settings, FileText, Globe, Atom, Binary, Loader2, Award, Heart, Download
 } from "lucide-react";
 
-type CognitiveStep = string;
-
-interface ProcessedData {
+interface CognitiveData {
   original: string;
   simplified: string;
-  steps: CognitiveStep[];
+  options?: string[];
+}
+
+interface QuestionResponse {
+  id: string;
+  en: CognitiveData;
+  hi: CognitiveData;
+}
+
+interface ProcessedData {
+  questions: QuestionResponse[];
 }
 
 // Mock Data for Demo Questions Strategy
-const DEMO_QUESTIONS = {
+const DEMO_QUESTIONS: Record<string, ProcessedData & { icon: React.ReactNode, title: string }> = {
   Maths: {
     icon: <Binary size={20} />,
     title: "Algebra & Logic",
-    original: "A train travels 120 km in 2 hours. What is its average speed?",
-    simplified: "A train goes 120 kilometers. It takes 2 hours. How fast is it going on average?",
-    steps: [
-      "Distance = 120 km",
-      "Time = 2 hours",
-      "Formula -> Speed = Distance ÷ Time",
-      "Calculate -> 120 ÷ 2 = 60",
-      "Answer -> 60 km/h"
+    questions: [
+      {
+        id: "q_maths_1",
+        en: {
+          original: "A train travels 120 km in 2 hours. What is its average speed?",
+          simplified: "A train goes 120 kilometers. It takes 2 hours. How fast is it going on average?",
+          options: []
+        },
+        hi: {
+          original: "एक ट्रेन 2 घंटे में 120 किमी की यात्रा करती है। इसकी औसत गति क्या है?",
+          simplified: "एक ट्रेन 120 किलोमीटर जाती है। इसमें 2 घंटे लगते हैं। औसतन यह कितनी तेज जा रही है?",
+          options: []
+        }
+      }
     ]
   },
   Science: {
     icon: <Atom size={20} />,
     title: "Physics & Energy",
-    original: "Explain the process of photosynthesis in plants and its role in the carbon cycle.",
-    simplified: "Plants make their own food using sunlight. This process is called photosynthesis.",
-    steps: [
-      "Plants take in sunlight, water, and carbon dioxide.",
-      "Sunlight gives energy to turn water and gas into food (sugar).",
-      "As a result, plants release oxygen back into the air.",
-      "This process helps keep Earth's carbon cycle balanced."
+    questions: [
+       {
+        id: "q_science_1",
+        en: {
+          original: "Explain the process of photosynthesis in plants and its role in the carbon cycle.",
+          simplified: "Plants make their own food using sunlight. This process is called photosynthesis.",
+        },
+        hi: {
+          original: "पौधों में प्रकाश संश्लेषण की प्रक्रिया और कार्बन चक्र में इसकी भूमिका की व्याख्या करें।",
+          simplified: "पौधे सूर्य के प्रकाश का उपयोग करके अपना भोजन स्वयं बनाते हैं। इस प्रक्रिया को प्रकाश संश्लेषण कहा जाता है।",
+        }
+      },
+      {
+        id: "q_science_2",
+        en: {
+          original: "Which of the following is NOT a greenhouse gas?\n(A) Carbon dioxide\n(B) Methane\n(C) Nitrogen\n(D) Nitrous oxide",
+          simplified: "Some gases trap heat in the Earth’s atmosphere. These are called greenhouse gases. Which option below is NOT one of them?",
+          options: ["(A) Carbon dioxide", "(B) Methane", "(C) Nitrogen", "(D) Nitrous oxide"]
+        },
+        hi: {
+          original: "निम्नलिखित में से कौन सी ग्रीनहाउस गैस नहीं है?\n(A) कार्बन डाईऑक्साइड\n(B) मीथेन\n(C) नाइट्रोजन\n(D) नाइट्रस ऑक्साइड",
+          simplified: "कुछ गैसें पृथ्वी के वायुमंडल में गर्मी को रोकती हैं। इन्हें ग्रीनहाउस गैसें कहा जाता है। नीचे दिए गए विकल्पों में से कौन सी गैस ऐसी नहीं है?",
+          options: ["(A) कार्बन डाईऑक्साइड", "(B) मीथेन", "(C) नाइट्रोजन", "(D) नाइट्रस ऑक्साइड"]
+        }
+      }
     ]
   },
   Hindi: {
     icon: <Globe size={20} />,
-    title: "Hindi Literature",
-    original: "प्रेमचंद की कहानियों में भारतीय किसान की दुर्दशा का यथार्थवादी चित्रण कैसे किया गया है?",
-    simplified: "प्रेमचंद की कहानियों में गरीब किसानों की मुश्किलें दिखाई गई हैं।",
-    steps: [
-      "मुंशी प्रेमचंद हिंदी के महान लेखक थे।",
-      "उन्होंने अपनी कहानियों में गाँव समाज को मुख्य विषय बनाया।",
-      "उनकी कहानियों में जमींदारों द्वारा किसानों का शोषण दिखाया गया है।",
-      "यह यथार्थवादी, यानी सच्ची घटनाओं जैसा चित्रण है।"
+    title: "Literature",
+    questions: [
+      {
+        id: "q_hindi_1",
+        en: {
+          original: "How is the realistic portrayal of the Indian farmer's plight depicted in Premchand's stories?",
+          simplified: "Premchand's stories show the difficulties of poor farmers.",
+        },
+        hi: {
+          original: "प्रेमचंद की कहानियों में भारतीय किसान की दुर्दशा का यथार्थवादी चित्रण कैसे किया गया है?",
+          simplified: "प्रेमचंद की कहानियों में गरीब किसानों की मुश्किलें दिखाई गई हैं।",
+        }
+      }
     ]
   }
 };
@@ -211,12 +248,10 @@ function BreathingExercise({ onClose, isDyslexicFont }: { onClose: () => void, i
 
 export default function Home() {
   // Global States
-  const [activeTab, setActiveTab] = useState<"upload" | "demos" | "journey" | "settings">("upload");
+  const [activeTab, setActiveTab] = useState<"upload" | "scanned" | "demos" | "settings">("upload");
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   // Gamification & Wellbeing State
-  const [completedConcepts, setCompletedConcepts] = useState<number>(0);
-  const targetConcepts = 5;
   const [isBreathingMode, setIsBreathingMode] = useState(false);
   
   // Customization States (Dynamics)
@@ -231,8 +266,19 @@ export default function Home() {
   
   // Active Content States
   const [data, setData] = useState<ProcessedData | null>(null);
+  const [activeQuestionId, setActiveQuestionId] = useState<string | null>(null);
+  const [language, setLanguage] = useState<string>("en");
+  const [isTranslating, setIsTranslating] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
   const [focusMode, setFocusMode] = useState(false);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
+
+  // Derived Content
+  const activeQuestion = data?.questions.find(q => q.id === activeQuestionId);
+  const activeContent = activeQuestion ? (activeQuestion as any)[language] || (activeQuestion as any)["en"] : null;
+
+  // Audio state
+  const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
 
   // Playback/Error States
   const [isPlaying, setIsPlaying] = useState(false);
@@ -247,6 +293,34 @@ export default function Home() {
       document.documentElement.classList.remove('dark');
     }
   }, [isDarkMode]);
+
+  // LocalStorage Caching for Scanned Documents
+  useEffect(() => {
+    const savedData = localStorage.getItem("lexara_saved_data");
+    if (savedData) {
+      try {
+        const parsed = JSON.parse(savedData);
+        if (parsed && parsed.questions) {
+          setData(parsed);
+          setActiveTab("scanned");
+        }
+      } catch (e) {
+        console.error("Failed to parse local storage data", e);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      // Don't save demo data to local storage to avoid confusion
+      const isDemoData = DEMO_QUESTIONS["Maths"].questions[0].id === data.questions[0]?.id || 
+                         DEMO_QUESTIONS["Science"].questions[0].id === data.questions[0]?.id || 
+                         DEMO_QUESTIONS["Hindi"].questions[0].id === data.questions[0]?.id;
+      if (!isDemoData) {
+        localStorage.setItem("lexara_saved_data", JSON.stringify(data));
+      }
+    }
+  }, [data]);
   
   // Handle Escape Key for Cinema Focus
   useEffect(() => {
@@ -264,10 +338,9 @@ export default function Home() {
   }, [focusMode]);
   
   // Fix Tab Navigation Bug by clearing data
-  const handleTabChange = (tab: "upload" | "demos" | "journey" | "settings") => {
+  const handleTabChange = (tab: "upload" | "scanned" | "demos" | "settings") => {
     setActiveTab(tab);
-    if (tab !== "demos" && tab !== "upload" && tab !== "journey" && data) setData(null);
-    if (tab === "upload" || tab === "settings" || tab === "journey") setData(null);
+    // Remove data-clearing to preserve the scanned document state globally
     setAudioError(null);
   };
   
@@ -278,58 +351,53 @@ export default function Home() {
 
   const toggleFont = () => setIsDyslexicFont(!isDyslexicFont);
 
-  // Bulletproof Client-Side Web Speech API (No backend reliance)
-  const speakText = (text: string) => {
+  // Server-Side OpenAI TTS implementation
+  const speakText = async (text: string) => {
     setAudioError(null);
-    if (isPlaying) {
-      window.speechSynthesis.cancel();
+    if (isPlaying && audioElement) {
+      audioElement.pause();
+      audioElement.currentTime = 0;
       setIsPlaying(false);
       return;
     }
     
     setIsLoadingAudio(true);
     try {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel(); // Clear any existing
-        
-        const utterance = new SpeechSynthesisUtterance(text);
-        
-        // Detect Hindi vs English
-        const isHindi = /[\u0900-\u097F]/.test(text);
-        
-        const voices = window.speechSynthesis.getVoices();
-        if (isHindi) {
-          utterance.lang = 'hi-IN';
-          const hindiVoice = voices.find(v => v.lang.includes('hi') || v.lang.includes('IN'));
-          if (hindiVoice) utterance.voice = hindiVoice;
-          utterance.rate = voiceSpeed; // Natural speed for Hindi
-        } else {
-          utterance.lang = 'en-US';
-          const englishVoice = voices.find(v => v.name.includes('Samantha') || v.name.includes('Google US English') || v.lang.includes('en-US'));
-          if (englishVoice) utterance.voice = englishVoice;
-          // Apply cognitive pacing for English (slower reading for dyslexia)
-          utterance.rate = voiceSpeed * 0.85; 
-        }
+      const apiUrl = process.env.NEXT_PUBLIC_AI_API_URL || "http://localhost:8000";
+      const res = await fetch(`${apiUrl}/api/tts`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text })
+      });
+      
+      if (!res.ok) throw new Error("Audio generation failed");
+      
+      const { audio_url } = await res.json();
+      const newAudio = new Audio(`${apiUrl}${audio_url}`);
+      
+      // Apply cognitive pacing based on Lexara user settings
+      newAudio.playbackRate = voiceSpeed;
+      
+      newAudio.onplay = () => {
+        setIsLoadingAudio(false);
+        setIsPlaying(true);
+        setAudioElement(newAudio);
+      };
+      
+      newAudio.onended = () => {
+        setIsPlaying(false);
+      };
+      
+      newAudio.onerror = () => {
+        setIsPlaying(false);
+        setAudioError("Failed to play the audio stream.");
+      };
 
-        utterance.onstart = () => {
-          setIsLoadingAudio(false);
-          setIsPlaying(true);
-        };
-        
-        utterance.onend = () => {
-          setIsPlaying(false);
-        };
-        
-        utterance.onerror = (e) => {
-          console.error("Speech Synthesis Error", e);
-          setIsPlaying(false);
-          setAudioError("Browser audio failed to play.");
-        };
-
-        window.speechSynthesis.speak(utterance);
-      } else {
-        throw new Error("Speech Synthesis not supported in this browser.");
-      }
+      newAudio.play().catch(err => {
+        console.log("Audio playback interrupted safely:", err);
+        setIsPlaying(false);
+        setIsLoadingAudio(false);
+      });
     } catch(e: any) {
       console.error(e);
       setIsPlaying(false);
@@ -341,11 +409,11 @@ export default function Home() {
   // Ensure audio stops if component unmounts
   useEffect(() => {
     return () => {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
+      if (audioElement) {
+        audioElement.pause();
       }
     };
-  }, []);
+  }, [audioElement]);
 
   // Upload Logic
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -355,33 +423,145 @@ export default function Home() {
   };
 
   const processFile = async () => {
-    setIsUploading(true);
-    await new Promise((r) => setTimeout(r, 800));
-    setIsUploading(false);
-    setIsProcessing(true);
-    
+    if (!file) return;
+
     try {
-      const mockExtractedText = file ? file.name : "Math Question"; 
-      const res = await fetch("http://localhost:8000/api/process", {
+      setIsUploading(true);
+      
+      // Step 1: Upload and Extract Text (OCR)
+      const formData = new FormData();
+      formData.append("file", file);
+      
+      const uploadRes = await fetch(`${process.env.NEXT_PUBLIC_AI_API_URL || "http://localhost:8000"}/api/upload`, {
+        method: "POST",
+        body: formData
+      });
+      
+      if (!uploadRes.ok) throw new Error("Failed to upload and extract text");
+      const uploadData = await uploadRes.json();
+      
+      setIsUploading(false);
+      setIsProcessing(true);
+
+      // Step 2: Send extracted Base64 Images for Vision Cognitive Processing
+      const processRes = await fetch(`${process.env.NEXT_PUBLIC_AI_API_URL || "http://localhost:8000"}/api/process`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: mockExtractedText })
+        body: JSON.stringify({ images: uploadData.images })
       });
-      const result = await res.json();
+      
+      if (!processRes.ok) throw new Error("Failed to cognitively process the text");
+      const result = await processRes.json();
+      
       setData(result);
+      setActiveQuestionId(null);
+      setLanguage("en");
+      setActiveTab("scanned"); // Automatically jump to the new Scanned tab
     } catch (e) {
       console.error(e);
-      loadDemoData("Maths"); // Fallback
+      // Fallback to Demo Data to ensure presentation is never blocked
+      loadDemoData("Maths"); 
+    } finally {
+      setIsUploading(false);
+      setIsProcessing(false);
     }
-    setIsProcessing(false);
   };
   
   const loadDemoData = (subject: keyof typeof DEMO_QUESTIONS) => {
     setData({
-      original: DEMO_QUESTIONS[subject].original,
-      simplified: DEMO_QUESTIONS[subject].simplified,
-      steps: DEMO_QUESTIONS[subject].steps
+      questions: DEMO_QUESTIONS[subject].questions
     });
+    setActiveQuestionId(null);
+    setLanguage("en");
+    setActiveTab("scanned"); // Switch to actively view the loaded info
+  };
+
+  const handleLanguageChange = async (targetLang: string) => {
+    if (!activeQuestion) return;
+    
+    // Stop any active audio safely
+    window.speechSynthesis.cancel();
+    if (audioElement) {
+      audioElement.pause();
+      audioElement.currentTime = 0;
+    }
+    setIsPlaying(false);
+
+    // If we already have the translation cached, switch instantly
+    if ((activeQuestion as any)[targetLang]) {
+      setLanguage(targetLang);
+      return;
+    }
+
+    // Otherwise, translate using backend API
+    try {
+      setIsTranslating(true);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_AI_API_URL || "http://localhost:8000"}/api/translate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+           data: (activeQuestion as any)["en"], // Always translate from English base to avoid degraded translations
+           target_language: targetLang 
+        })
+      });
+
+      if (!res.ok) throw new Error("Translation failed");
+      const translatedData = await res.json();
+
+      // Deep copy and update the data state to cache the new language forever
+      setData(prev => {
+        if (!prev) return prev;
+        const newQuestions = prev.questions.map(q => {
+          if (q.id === activeQuestionId) {
+            return { ...q, [targetLang]: translatedData };
+          }
+          return q;
+        });
+        const newData = { ...prev, questions: newQuestions };
+        
+        // Auto-persist translated cache
+        localStorage.setItem("lexara_saved_data", JSON.stringify(newData));
+        return newData;
+      });
+
+      setLanguage(targetLang);
+    } catch (e) {
+      console.error(e);
+      setAudioError("Translation service unavailable.");
+    } finally {
+      setIsTranslating(false);
+    }
+  };
+
+  const handleExportPDF = async () => {
+    if (!data) return;
+    try {
+      setIsExporting(true);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_AI_API_URL || "http://localhost:8000"}/api/export_pdf`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data, language })
+      });
+      if (!res.ok) throw new Error("Failed to export PDF");
+      
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(new Blob([blob], { type: 'application/pdf' }));
+      const a = document.createElement("a");
+      a.style.display = 'none';
+      a.href = url;
+      a.download = `Lexara_Dyslexic_Document_${language}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }, 100);
+    } catch (e) {
+      console.error(e);
+      setAudioError("Failed to generate Dyslexic PDF.");
+    } finally {
+      setIsExporting(false);
+    }
   };
 
   const springConfig: any = { type: "spring", stiffness: 300, damping: 30 };
@@ -401,8 +581,8 @@ export default function Home() {
       <div className="hidden md:flex glass-panel bg-white/20 dark:bg-black/20 p-1 rounded-full border-black/5 dark:border-white/5">
         {[
           { id: "upload", icon: <FileText size={16} />, label: "PDF Scanner" },
+          { id: "scanned", icon: <Search size={16} />, label: "Scanned Document" },
           { id: "demos", icon: <Sparkles size={16} />, label: "Cognitive Demos" },
-          { id: "journey", icon: <Award size={16} />, label: "Journey" },
           { id: "settings", icon: <Settings size={16} />, label: "Dynamics" }
         ].map(tab => (
           <button
@@ -513,7 +693,7 @@ export default function Home() {
             </div>
             <h3 className="text-2xl font-bold tracking-tight z-10">{DEMO_QUESTIONS[sub].title}</h3>
             <p className="text-[15px] font-medium text-foreground/60 line-clamp-2 z-10">
-              {DEMO_QUESTIONS[sub].original}
+              {DEMO_QUESTIONS[sub].questions[0].en.original}
             </p>
             <div className="mt-auto pt-4 flex items-center gap-2 text-accent font-semibold text-[14px] z-10">
               Translate & Simplify <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform"/>
@@ -528,97 +708,9 @@ export default function Home() {
   );
 
   const handleConceptComplete = () => {
-    confetti({
-      particleCount: 150,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ['#0071e3', '#34c759', '#8e43e7', '#ffcc00']
-    });
-    setCompletedConcepts(prev => prev + 1);
     setFocusMode(false);
     window.speechSynthesis.cancel(); 
     setIsPlaying(false);
-  };
-
-  const renderJourneyTab = () => {
-    const progressPercent = Math.min((completedConcepts / targetConcepts) * 100, 100);
-    const radius = 60;
-    const circumference = 2 * Math.PI * radius;
-    const strokeDashoffset = circumference - (progressPercent / 100) * circumference;
-
-    return (
-      <motion.div
-        key="journey"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={springConfig}
-        className="max-w-4xl mx-auto pt-4 px-6 flex flex-col gap-10"
-      >
-        <div className="text-center mb-4">
-          <h2 className="text-4xl font-bold tracking-tight mb-4">Your Journey</h2>
-          <p className="text-foreground/60 max-w-xl mx-auto text-[17px]">
-            Track your cognitive breakthroughs and maintain your personal wellbeing. Consistent learning builds lasting confidence.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Apple Health Style Academic Progress Ring */}
-          <div className="glass-panel p-8 flex flex-col items-center justify-center text-center relative overflow-hidden shadow-glass border border-black/5 dark:border-white/10">
-            <h3 className="text-[15px] font-bold text-foreground/50 uppercase tracking-widest mb-6">Daily Academic Goals</h3>
-            
-            <div className="relative flex items-center justify-center mb-6">
-              <svg className="transform -rotate-90 w-40 h-40">
-                <circle cx="80" cy="80" r={radius} stroke="currentColor" strokeWidth="12" fill="transparent" className="text-black/5 dark:text-white/10" />
-                <motion.circle 
-                  initial={{ strokeDashoffset: circumference }}
-                  animate={{ strokeDashoffset }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
-                  cx="80" cy="80" r={radius} stroke="currentColor" strokeWidth="12" fill="transparent" 
-                  strokeDasharray={circumference}
-                  strokeLinecap="round"
-                  className="text-success drop-shadow-[0_0_10px_rgba(52,199,89,0.5)]" 
-                />
-              </svg>
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                <span className="text-3xl font-bold tracking-tighter">{completedConcepts}</span>
-                <span className="text-[12px] font-medium text-foreground/50">/ {targetConcepts} Concepts</span>
-              </div>
-            </div>
-            
-            <p className="text-[15px] font-medium text-foreground/80">
-              {completedConcepts >= targetConcepts 
-                ? "Incredible job! You've met your daily cognitive mastery goal." 
-                : `You are ${targetConcepts - completedConcepts} concepts away from today's active learning goal.`}
-            </p>
-          </div>
-
-          {/* Personal Wellbeing Module */}
-          <div className="glass-panel p-8 flex flex-col gap-6 relative overflow-hidden shadow-glass border border-black/5 dark:border-white/10">
-            <div className="w-12 h-12 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shadow-[0_0_30px_-5px_rgba(239,68,68,0.3)]">
-              <Heart size={24} fill="currentColor" />
-            </div>
-            
-            <div>
-              <h3 className="text-2xl font-bold tracking-tight mb-2">Personal Wellbeing</h3>
-              <p className="text-[15px] font-medium text-foreground/60 leading-relaxed">
-                Dyslexia can bring academic fatigue. Take a moment to reset your cognitive load.
-              </p>
-            </div>
-
-            <div className="mt-auto bg-black/5 dark:bg-white/5 p-4 rounded-2xl flex items-center justify-between">
-              <div>
-                <h4 className="font-semibold text-[14px]">4-7-8 Breathing</h4>
-                <p className="text-[12px] text-foreground/50">Reduce cognitive overload (2 mins)</p>
-              </div>
-              <button onClick={() => setIsBreathingMode(true)} className="w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center hover:scale-105 transition-transform shadow-md">
-                <Play fill="currentColor" size={14} className="ml-1"/>
-              </button>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    );
   };
 
   const renderSettingsTab = () => (
@@ -702,7 +794,62 @@ export default function Home() {
   );
 
   const renderActiveContent = () => {
-    if (data) {
+    if (activeTab === "scanned" && data && !activeQuestionId) {
+      return (
+        <motion.div
+          key="questions-list"
+          initial={{ opacity: 0, y: 40, filter: "blur(20px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={springConfig}
+          className="flex flex-col gap-8 pt-4 w-full max-w-5xl mx-auto relative z-10"
+        >
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-4xl font-bold tracking-tight mb-2">Cognitive Extraction</h2>
+              <p className="text-foreground/60 mb-4">Select a question from the document to view its cognitive breakdown.</p>
+              <button 
+                onClick={handleExportPDF} 
+                disabled={isExporting}
+                className="bg-accent text-white px-5 py-2.5 rounded-full font-semibold text-[14px] flex items-center gap-2 hover:bg-accent/90 transition-all shadow-glowing disabled:opacity-50"
+              >
+                {isExporting ? <Loader2 className="animate-spin" size={16} /> : <Download size={16} />}
+                Export as Dyslexic PDF
+              </button>
+            </div>
+            <button 
+              onClick={() => { setData(null); setAudioError(null); }} 
+              className="text-foreground/50 hover:text-foreground font-medium text-[15px] flex items-center gap-2 transition-colors hover:-translate-x-1 duration-300 glass-panel px-4 py-2 rounded-full h-12"
+            >
+              <ChevronLeft size={18} /> Back
+            </button>
+          </div>
+
+          <div className="grid gap-4">
+            {data.questions.map((q, idx) => (
+              <SpotlightCard 
+                key={q.id} 
+                onClick={() => { setActiveQuestionId(q.id); setCurrentStepIndex(0); }}
+                className="hover:scale-[1.01]"
+              >
+                <div className="flex gap-4 items-start relative z-10">
+                  <div className="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center font-bold shrink-0 mt-1 shadow-sm">
+                    {idx + 1}
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[17px] font-medium text-foreground mb-4 line-clamp-3">{q.en.original}</p>
+                    <div className="flex items-center gap-2 text-accent text-[14px] font-semibold">
+                       Analyze Cognitively <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform"/>
+                    </div>
+                  </div>
+                </div>
+              </SpotlightCard>
+            ))}
+          </div>
+        </motion.div>
+      );
+    }
+
+    if (data && activeQuestionId && activeContent) {
       return (
         <motion.div
           key="results"
@@ -714,17 +861,53 @@ export default function Home() {
           {/* Top Controls */}
           <div className="flex items-center justify-between">
             <button 
-              onClick={() => { setData(null); setAudioError(null); }} 
+              onClick={() => { setActiveQuestionId(null); setAudioError(null); }} 
               className="text-foreground/50 hover:text-foreground font-medium text-[15px] flex items-center gap-2 transition-colors hover:-translate-x-1 duration-300"
             >
-              <ChevronLeft size={18} /> Back to Library
+              <ChevronLeft size={18} /> Back to Questions
             </button>
-            <button 
-              onClick={() => setFocusMode(true)}
-              className="px-6 py-2.5 rounded-full font-semibold text-[15px] flex items-center gap-2 transition-all bg-foreground text-background hover:scale-105 shadow-glass"
-            >
-              <Maximize2 size={16} /> Enter Cinema Focus
-            </button>
+            <div className="flex items-center gap-4">
+              {/* Dynamic Language Dropdown */}
+              <div className="relative glass-panel flex rounded-full items-center shadow-sm px-2 py-1">
+                <Globe size={14} className="text-foreground/50 ml-2 mr-1" />
+                <select 
+                  value={language}
+                  onChange={(e) => handleLanguageChange(e.target.value)}
+                  disabled={isTranslating}
+                  className="bg-transparent text-foreground text-[14px] font-bold outline-none cursor-pointer appearance-none px-3 py-1 pr-8 disabled:opacity-50"
+                  style={{ backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23999%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E")`, backgroundRepeat: "no-repeat", backgroundPosition: "right 0.5rem top 50%", backgroundSize: "0.65rem auto" }}
+                >
+                  <option value="en">English</option>
+                  <option value="hi">Hindi (हिंदी)</option>
+                  <option value="bn">Bengali (বাংলা)</option>
+                  <option value="mr">Marathi (मराठी)</option>
+                  <option value="ta">Tamil (தமிழ்)</option>
+                  <option value="te">Telugu (తెలుగు)</option>
+                  <option value="gu">Gujarati (ગુજરાતી)</option>
+                  <option value="ur">Urdu (اردو)</option>
+                  <option value="kn">Kannada (ಕನ್ನಡ)</option>
+                  <option value="or">Odia (ଓଡ଼ିଆ)</option>
+                  <option value="ml">Malayalam (മലയാളം)</option>
+                  <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
+                  <option value="as">Assamese (অসমীয়া)</option>
+                  <option value="mwr">Marwari (मारवाड़ी)</option>
+                  <option value="es">Spanish (Español)</option>
+                  <option value="fr">French (Français)</option>
+                  <option value="de">German (Deutsch)</option>
+                  <option value="zh">Mandarin (中文)</option>
+                  <option value="ar">Arabic (العربية)</option>
+                  <option value="ja">Japanese (日本語)</option>
+                </select>
+                {isTranslating && <Loader2 className="animate-spin text-accent absolute right-2" size={14} />}
+              </div>
+
+              <button 
+                onClick={() => setFocusMode(true)}
+                className="px-6 py-2.5 rounded-full font-semibold text-[15px] flex items-center gap-2 transition-all bg-foreground text-background hover:scale-105 shadow-glass"
+              >
+                <Maximize2 size={16} /> Enter Cinema Focus
+              </button>
+            </div>
           </div>
 
           {/* Cognitive Dashboard Layout */}
@@ -740,14 +923,14 @@ export default function Home() {
               </div>
               <AnimatePresence mode="wait">
                 <motion.p 
-                  key={isDyslexicFont ? 'dys-orig' : 'norm-orig'}
+                  key={`${language}-${isDyslexicFont ? 'dys-orig' : 'norm-orig'}`}
                   initial={{ opacity: 0, filter: "blur(8px)" }}
                   animate={{ opacity: 1, filter: "blur(0px)" }}
                   exit={{ opacity: 0, filter: "blur(8px)" }}
                   className="text-[17px] font-medium text-foreground/70" 
                   style={{ lineHeight: lineSpacing, letterSpacing: `${letterSpacing}em`, fontSize: `${17 * fontSizeFactor}px`, fontFamily: isDyslexicFont ? 'OpenDyslexic' : 'inherit' }}
                 >
-                  {data.original}
+                  {activeContent.original}
                 </motion.p>
               </AnimatePresence>
             </div>
@@ -768,7 +951,7 @@ export default function Home() {
                     {audioError && <span className="text-red-500 text-xs font-semibold bg-red-500/10 px-3 py-1.5 rounded-full flex items-center gap-1"><AlertCircle size={14}/> {audioError}</span>}
                     {isLoadingAudio && <Loader2 className="animate-spin text-accent" size={20} />}
                     <button 
-                      onClick={() => speakText(data.simplified)}
+                      onClick={() => speakText(activeContent.simplified)}
                       disabled={isLoadingAudio}
                       className="w-12 h-12 rounded-full bg-accent/10 text-accent flex items-center justify-center hover:bg-accent hover:text-white transition-all shadow-sm disabled:opacity-50"
                     >
@@ -779,63 +962,55 @@ export default function Home() {
                 
                 <AnimatePresence mode="wait">
                   <motion.h1 
-                    key={isDyslexicFont ? 'dys-simp' : 'norm-simp'}
+                    key={`${language}-${isDyslexicFont ? 'dys-simp' : 'norm-simp'}`}
                     initial={{ opacity: 0, filter: "blur(8px)" }}
                     animate={{ opacity: 1, filter: "blur(0px)" }}
                     exit={{ opacity: 0, filter: "blur(8px)" }}
                     className="font-bold tracking-tight text-foreground" 
                     style={{ lineHeight: lineSpacing, letterSpacing: `${letterSpacing}em`, fontSize: `${32 * fontSizeFactor}px`, fontFamily: isDyslexicFont ? 'OpenDyslexic' : 'inherit' }}
                   >
-                    {data.simplified}
+                    {activeContent.simplified}
                   </motion.h1>
                 </AnimatePresence>
-              </motion.div>
 
-              <div className="flex flex-col gap-4">
-                {data.steps.map((step, idx) => (
+                {activeContent.options && activeContent.options.length > 0 && (
                   <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 + (idx * 0.1), ...springConfig }}
-                    key={idx} 
-                    className="glass-panel p-8 flex items-center gap-6 relative group hover:shadow-glass-hover hover:-translate-y-1 transition-all duration-300 border border-black/5 dark:border-white/5"
+                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, ...springConfig }}
+                    className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4"
                   >
-                    <div className="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-black/5 to-black/10 dark:from-white/10 dark:to-white/5 flex items-center justify-center font-bold text-[18px] text-foreground/50 border border-black/5 dark:border-white/10">
-                      {idx + 1}
-                    </div>
-                    
-                    <AnimatePresence mode="wait">
-                      <motion.p 
-                        key={isDyslexicFont ? 'dys-step' : 'norm-step'}
-                        initial={{ opacity: 0, filter: "blur(4px)" }}
-                        animate={{ opacity: 1, filter: "blur(0px)" }}
-                        exit={{ opacity: 0, filter: "blur(4px)" }}
-                        className="font-semibold tracking-tight text-foreground flex-1" 
-                        style={{ lineHeight: lineSpacing, letterSpacing: `${letterSpacing}em`, fontSize: `${20 * fontSizeFactor}px`, fontFamily: isDyslexicFont ? 'OpenDyslexic' : 'inherit' }}
+                    {activeContent.options.map((opt: string, i: number) => (
+                      <button 
+                        key={i} 
+                        onClick={() => speakText(opt)}
+                        disabled={isLoadingAudio}
+                        className="p-6 rounded-2xl border-2 border-black/5 dark:border-white/5 hover:border-accent bg-white/40 dark:bg-black/20 text-left transition-all hover:shadow-glass hover:-translate-y-1 group flex items-start justify-between gap-4 disabled:opacity-50"
                       >
-                        {step}
-                      </motion.p>
-                    </AnimatePresence>
-
-                    <button 
-                      onClick={() => speakText(step)}
-                      disabled={isLoadingAudio}
-                      className="ml-auto w-12 h-12 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center text-foreground hover:bg-accent hover:text-white transition-all shadow-sm shrink-0 disabled:opacity-50"
-                    >
-                      {isLoadingAudio ? <Loader2 className="animate-spin text-foreground opacity-50" size={16} /> : <Volume2 size={18} strokeWidth={2}/>}
-                    </button>
+                        <span className="font-semibold text-foreground/80 group-hover:text-foreground/100 transition-colors" style={{ fontSize: `${22 * fontSizeFactor}px`, fontFamily: isDyslexicFont ? 'OpenDyslexic' : 'inherit' }}>
+                          {opt}
+                        </span>
+                        <div className="w-10 h-10 shrink-0 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-colors text-foreground/50">
+                          <Volume2 size={18} />
+                        </div>
+                      </button>
+                    ))}
                   </motion.div>
-                ))}
-              </div>
+                )}
+              </motion.div>
             </div>
           </div>
         </motion.div>
       );
     }
 
+    if (activeTab === "scanned") {
+        return (
+            <div className="flex flex-col items-center justify-center pt-20">
+                <p className="text-xl text-foreground/50">No document scanned yet.</p>
+            </div>
+        )
+    }
     if (activeTab === "upload") return renderUploadTab();
     if (activeTab === "demos") return renderDemosTab();
-    if (activeTab === "journey") return renderJourneyTab();
     if (activeTab === "settings") return renderSettingsTab();
     return null;
   };
@@ -860,7 +1035,7 @@ export default function Home() {
 
         {/* Cinematic Focus Mode (VisionOS Style) */}
         <AnimatePresence>
-          {focusMode && data && (
+          {focusMode && data && activeContent && (
             <motion.div 
               initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
               animate={{ opacity: 1, backdropFilter: "blur(40px)" }}
@@ -884,90 +1059,83 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="w-full max-w-4xl relative h-[50vh] flex items-center justify-center mt-[-40px]">
+              <div className="w-full max-w-4xl relative h-[60vh] flex flex-col items-center justify-center mt-[-20px]">
                 <AnimatePresence mode="wait">
                   <motion.div 
-                    key={currentStepIndex}
+                    key={`${language}-focus-mode`}
                     initial={{ opacity: 0, y: 40, scale: 0.95, filter: "blur(10px)" }}
                     animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
                     exit={{ opacity: 0, y: -40, scale: 1.05, filter: "blur(10px)" }}
                     transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
-                    className="text-center w-full"
+                    className="text-center w-full flex flex-col items-center gap-12"
                   >
-                    <span className="inline-block text-accent font-semibold text-xl mb-8 tracking-widest uppercase bg-accent/10 px-6 py-2 rounded-full border border-accent/20">
-                      Step {currentStepIndex + 1}
+                    <span className="inline-block text-accent font-semibold text-xl tracking-widest uppercase bg-accent/10 px-6 py-2 rounded-full border border-accent/20">
+                      Dyslexic Adjusted
                     </span>
                     
                     {/* Add smooth wavy blur transition on font change */}
                     <AnimatePresence mode="wait">
                       <motion.h2 
-                        key={isDyslexicFont ? 'dyslexic' : 'normal'}
+                        key={`${language}-${isDyslexicFont ? 'dyslexic' : 'normal'}`}
                         initial={{ opacity: 0, filter: "blur(10px)", y: 10 }}
                         animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
                         exit={{ opacity: 0, filter: "blur(10px)", y: -10 }}
                         transition={{ duration: 0.4 }}
-                        className="text-6xl md:text-7xl font-bold leading-[1.2] tracking-normal text-white" 
-                        style={{ fontFamily: isDyslexicFont ? 'OpenDyslexic' : 'inherit' }}
+                        className="text-4xl md:text-5xl font-bold leading-[1.3] tracking-normal text-white max-w-3xl mx-auto" 
+                        style={{ fontFamily: isDyslexicFont ? 'OpenDyslexic' : 'inherit', letterSpacing: letterSpacing }}
                       >
-                        {data.steps[currentStepIndex]}
+                        {activeContent.simplified}
                       </motion.h2>
                     </AnimatePresence>
+
+                    {activeContent.options && activeContent.options.length > 0 && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-4">
+                        {activeContent.options.map((opt: string, i: number) => (
+                          <button 
+                            key={i}
+                            onClick={() => speakText(opt)}
+                            disabled={isLoadingAudio}
+                            className="bg-white/10 hover:bg-white/20 border-2 border-white/10 hover:border-white/30 backdrop-blur-md transition-all duration-300 rounded-3xl p-6 flex items-center justify-between group disabled:opacity-50 text-left"
+                          >
+                            <span 
+                              className="text-white font-semibold flex-1 pr-4" 
+                              style={{ fontSize: `${24 * fontSizeFactor}px`, fontFamily: isDyslexicFont ? 'OpenDyslexic' : 'inherit' }}
+                            >
+                              {opt}
+                            </span>
+                            <div className="w-12 h-12 rounded-full bg-white/10 group-hover:bg-accent group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
+                              <Volume2 size={20} />
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                     
                     <motion.button 
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={() => speakText(data.steps[currentStepIndex])}
+                      onClick={() => speakText(activeContent.simplified)}
                       disabled={isLoadingAudio}
-                      className="mt-16 w-24 h-24 rounded-full bg-white text-black flex items-center justify-center mx-auto shadow-[0_0_60px_-15px_rgba(255,255,255,0.5)] disabled:opacity-50"
+                      className="mt-4 w-20 h-20 rounded-full bg-white text-black flex items-center justify-center mx-auto shadow-[0_0_60px_-15px_rgba(255,255,255,0.5)] disabled:opacity-50"
                     >
-                      {isLoadingAudio ? <Loader2 className="animate-spin" size={36} /> : (isPlaying ? <Pause fill="currentColor" size={36} /> : <Play fill="currentColor" size={36} className="ml-2" />)}
+                      {isLoadingAudio ? <Loader2 className="animate-spin" size={32} /> : (isPlaying ? <Pause fill="currentColor" size={32} /> : <Play fill="currentColor" size={32} className="ml-2" />)}
                     </motion.button>
                   </motion.div>
                 </AnimatePresence>
               </div>
 
-              <div className="absolute bottom-16 w-full max-w-[400px] flex items-center justify-between">
-                <button 
-                  onClick={() => { setCurrentStepIndex(Math.max(0, currentStepIndex - 1)); window.speechSynthesis.cancel(); setIsPlaying(false); }}
-                  className={`w-16 h-16 rounded-full glass-panel border-white/10 flex items-center justify-center transition-all ${currentStepIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/20 hover:scale-110'}`}
-                  disabled={currentStepIndex === 0}
+              <div className="absolute bottom-16 w-full flex items-center justify-center">
+                <motion.button 
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleConceptComplete}
+                  className="w-20 h-20 rounded-full glass-panel border-white/10 flex items-center justify-center transition-all bg-success text-white shadow-[0_0_40px_rgba(52,199,89,0.5)] border-success"
                 >
-                  <ChevronLeft size={28} />
-                </button>
-                
-                <div className="flex gap-3">
-                  {data.steps.map((_, idx) => (
-                    <div key={idx} className={`h-2.5 rounded-full transition-all duration-500 ${idx === currentStepIndex ? 'w-10 bg-white shadow-[0_0_15px_rgba(255,255,255,0.5)]' : 'w-2.5 bg-white/20'}`} />
-                  ))}
-                </div>
-
-                <AnimatePresence mode="popLayout" initial={false}>
-                  {currentStepIndex === data.steps.length - 1 ? (
-                    <motion.button 
-                      key="complete-btn"
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.8, opacity: 0 }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={handleConceptComplete}
-                      className="w-16 h-16 rounded-full glass-panel border-white/10 flex items-center justify-center transition-all bg-success text-white shadow-[0_0_30px_rgba(52,199,89,0.5)] border-success"
-                    >
-                      <Award size={24} />
-                    </motion.button>
-                  ) : (
-                    <motion.button 
-                      key="next-btn"
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.8, opacity: 0 }}
-                      onClick={() => { setCurrentStepIndex(Math.min(data.steps.length - 1, currentStepIndex + 1)); window.speechSynthesis.cancel(); setIsPlaying(false); }}
-                      className={`w-16 h-16 rounded-full glass-panel border-white/10 flex items-center justify-center transition-all hover:bg-white/20 hover:scale-110 bg-white/10`}
-                    >
-                      <ChevronRight size={28} />
-                    </motion.button>
-                  )}
-                </AnimatePresence>
+                  <span className="sr-only">Complete</span>
+                  <Award size={32} />
+                </motion.button>
               </div>
             </motion.div>
           )}
