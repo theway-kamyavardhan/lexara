@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://antigravity-assets.s3.amazonaws.com/OpenDyslexic-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://antigravity-assets.s3.amazonaws.com/OpenDyslexic-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+:root {
+  --background: #FDFBF7; /* Warm cream background reduces glare */
+  --foreground: #2B2A29; /* Off-black for lower contrast harshness */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #18181A;
+    --foreground: #E5E5E5;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  /* Default to a highly legible sans, let user toggle OpenDyslexic */
+  font-family: 'Inter', sans-serif; 
+  line-height: 1.8; /* Increased line spacing */
+  letter-spacing: 0.02em; /* Increased letter spacing */
+}
+
+.dyslexic-mode {
+  font-family: 'OpenDyslexic', sans-serif !important;
+  letter-spacing: 0.05em;
+  line-height: 2;
+  word-spacing: 0.1em;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.dark .glass-panel {
+  background: rgba(30, 30, 30, 0.6);
+  border: 1px solid rgba(80, 80, 80, 0.4);
+}
