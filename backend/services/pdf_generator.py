@@ -51,10 +51,16 @@ def generate_dyslexic_pdf(data: dict, language: str = "en") -> str:
     questions = data.get("questions", [])
     
     for idx, q in enumerate(questions):
-        # We try to get the target language, fallback to english or the first available
-        q_data = q.get(language)
-        if not q_data:
-            q_data = q.get("en", {})
+        if language == "en":
+            original_text = q.get("original", {}).get("english", "")
+            simplified = q.get("simplified", {})
+            simplified_text = simplified.get("english", "")
+            steps = simplified.get("steps", [])
+            if steps:
+                simplified_text += "\n\n" + "\n".join(steps)
+        else:
+            original_text = "Dyslexic Cognitive Translation"
+            simplified_text = q.get("translations", {}).get(language, "")
         
         # Section Header (Question #)
         try:
@@ -84,8 +90,9 @@ def generate_dyslexic_pdf(data: dict, language: str = "en") -> str:
             pdf.set_font("OpenDyslexic", "", 11)
         except:
             pdf.set_font("helvetica", "", 11)
-        original_text = q_data.get("original", "").encode('latin-1', 'replace').decode('latin-1')
-        pdf.multi_cell(0, 8, original_text) # 8 is good line height for readability
+            
+        original_encoded = original_text.encode('latin-1', 'replace').decode('latin-1')
+        pdf.multi_cell(0, 8, original_encoded) # 8 is good line height for readability
         pdf.ln(6)
 
         # 2. Simplified Breakdown
@@ -95,24 +102,8 @@ def generate_dyslexic_pdf(data: dict, language: str = "en") -> str:
         except:
             pdf.set_font("helvetica", "B", 14)
         
-        simplified_text = q_data.get("simplified", "").encode('latin-1', 'replace').decode('latin-1')
-        pdf.multi_cell(0, 10, simplified_text)
-        pdf.ln(6)
-
-        # 3. Options
-        options = q_data.get("options", [])
-        if options:
-            pdf.ln(4)
-            pdf.set_text_color(30, 30, 30)
-            try:
-                pdf.set_font("OpenDyslexic", "B", 12)
-            except:
-                pdf.set_font("helvetica", "B", 12)
-            for opt in options:
-                opt_text = opt.encode('latin-1', 'replace').decode('latin-1')
-                pdf.cell(10) # Indent
-                pdf.cell(0, 8, opt_text, ln=True)
-
+        simplified_encoded = simplified_text.encode('latin-1', 'replace').decode('latin-1')
+        pdf.multi_cell(0, 10, simplified_encoded)
         pdf.ln(15) # Spacing before next question
 
     # Save to file

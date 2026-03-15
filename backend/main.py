@@ -14,6 +14,9 @@ from services.pdf_generator import generate_dyslexic_pdf
 
 app = FastAPI(title="Lexara AI Backend")
 
+# Global dict to track extraction progress state percentages
+progress_store = {}
+
 # Mount static directory for audio files
 app.mount("/static", StaticFiles(directory=TTS_DIR), name="static")
 
@@ -28,13 +31,11 @@ app.add_middleware(
 
 class SimplifyRequest(BaseModel):
     images: list[str]
-
-class TranslateRequest(BaseModel):
-    data: dict
-    target_language: str
+    task_id: str | None = None
 
 class TTSRequest(BaseModel):
     text: str
+    language: str = "en"
 
 class PDFExportRequest(BaseModel):
     data: dict
@@ -44,16 +45,28 @@ class PDFExportRequest(BaseModel):
 def read_root():
     return {"message": "Lexara AI Backend is running"}
 
-@app.post("/api/upload")
-async def upload_exam_paper(file: UploadFile = File(...)):
+from fastapi import Form
+
+@app.post("/api/upload_and_process")
+async def upload_and_process(file: UploadFile = File(...), task_id: str = Form(None)):
+    if task_id:
+        progress_store[task_id] = {"status": "Extracting Document Bytes...", "percent": 5}
+        
     content = await file.read()
     filename = file.filename or "unknown"
+    
+    # 1. Extract Base64 Images quickly (150 DPI)
     images = extract_base64_from_file(content, filename)
-    return {"images": images}
-
-@app.post("/api/process")
-async def process_question(request: SimplifyRequest):
-    result = generate_cognitive_steps(request.images)
+    
+    if task_id:
+        progress_store[task_id] = {"status": "Analyzing Document Structure...", "percent": 15}
+        
+    # 2. Cognitively Process via GPT-4o
+    result = generate_cognitive_steps(images, task_id)
+    
+    if task_id:
+        progress_store[task_id] = {"status": "Completed Extraction", "percent": 100}
+        
     # Fire and forget storage for demo purposes
     try:
         store_processed_paper(result)
@@ -61,15 +74,15 @@ async def process_question(request: SimplifyRequest):
         print(f"Failed to store paper in background: {e}")
     return result
 
-@app.post("/api/translate")
-async def translate_content(request: TranslateRequest):
-    result = translate_cognitive_data(request.data, request.target_language)
-    return result
+@app.get("/api/progress/{task_id}")
+def get_progress(task_id: str):
+    data = progress_store.get(task_id, {"status": "Initializing Engine...", "percent": 0})
+    return JSONResponse(content=data)
 
 @app.post("/api/tts")
 async def generate_tts(request: TTSRequest):
     filename = f"{uuid.uuid4().hex}.mp3"
-    audio_url = generate_audio(request.text, filename)
+    audio_url = generate_audio(request.text, filename, request.language)
     return {"audio_url": audio_url}
 
 @app.post("/api/export_pdf")

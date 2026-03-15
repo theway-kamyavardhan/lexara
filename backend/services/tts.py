@@ -17,7 +17,7 @@ env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env")
 load_dotenv(env_path)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-def generate_audio(text: str, filename: str) -> str:
+def generate_audio(text: str, filename: str, language: str = "en") -> str:
     """
     Generate MP3 from text using OpenAI's premium TTS and return the saved path.
     Falls back to gTTS if OpenAI is unresponsive or unconfigured.
@@ -38,14 +38,12 @@ def generate_audio(text: str, filename: str) -> str:
         except Exception as e:
             print(f"OpenAI TTS Error: {e}. Falling back to gTTS.")
 
-    print("Using gTTS as fallback for Text-to-Speech.")
-    # Simple heuristic for Hindi detection (check for Devanagari characters)
-    is_hindi = any('\u0900' <= char <= '\u097F' for char in text)
-    lang = 'hi' if is_hindi else 'en'
+    print(f"Using gTTS as fallback for Text-to-Speech in language: {language}")
+    lang = language
     
     # We use slow=True for Dyslexia-friendly cognitive pacing if it's English, 
-    # but for Hindi slow=False often sounds more natural with gTTS.
-    tts = gTTS(text=text, lang=lang, slow=not is_hindi)
+    # but for other languages slow=False often sounds more natural with gTTS.
+    tts = gTTS(text=text, lang=lang, slow=(lang == 'en'))
     
     tts.save(filepath)
     return f"/static/{filename}"

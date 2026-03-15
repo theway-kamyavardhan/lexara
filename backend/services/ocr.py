@@ -12,11 +12,11 @@ def extract_base64_from_file(file_bytes: bytes, filename: str) -> list[str]:
     base64_images = []
     try:
         if filename.lower().endswith('.pdf') or file_bytes.startswith(b'%PDF'):
-            # Convert PDF pages to images
-            images = pdf2image.convert_from_bytes(file_bytes)
+            # Convert PDF pages to images at lower DPI to prevent payload bloat
+            images = pdf2image.convert_from_bytes(file_bytes, dpi=150)
             for image in images:
                 buffered = io.BytesIO()
-                image.save(buffered, format="JPEG")
+                image.save(buffered, format="JPEG", quality=65)
                 img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
                 base64_images.append(f"data:image/jpeg;base64,{img_str}")
         else:
@@ -26,7 +26,7 @@ def extract_base64_from_file(file_bytes: bytes, filename: str) -> list[str]:
             if image.mode in ("RGBA", "P"):
                 image = image.convert("RGB")
             buffered = io.BytesIO()
-            image.save(buffered, format="JPEG")
+            image.save(buffered, format="JPEG", quality=65)
             img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
             base64_images.append(f"data:image/jpeg;base64,{img_str}")
             
