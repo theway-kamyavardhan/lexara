@@ -3,10 +3,12 @@ import { validateApiKey, corsHeaders } from "@/lib/apiAuth";
 
 const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8000";
 
+const MAX_CHARS = 2000;
+
 /**
- * POST /api/v1/tts
- * Accepts JSON: { text: string, language?: string }
- * Validates API key, then proxies to Python backend → /api/tts
+ * POST /api/v1/simplify
+ * Body: { text: string }
+ * Returns: { simplified_text: string, original_text: string }
  */
 export async function POST(request: NextRequest) {
   const authError = validateApiKey(request);
@@ -22,30 +24,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const backendResponse = await fetch(`${BACKEND_URL}/api/tts`, {
+    if (body.text.length > MAX_CHARS) {
+      return NextResponse.json(
+        { error: `Text too long. Maximum ${MAX_CHARS} characters allowed.` },
+        { status: 413, headers: corsHeaders() }
+      );
+    }
+
+    const backendResponse = await fetch(`${BACKEND_URL}/simplify`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        text: body.text,
-        language: body.language ?? "en",
-      }),
+      body: JSON.stringify({ text: body.text.trim() }),
     });
 
     const data = await backendResponse.json();
-
-    // Rewrite relative audio_url ("/static/abc.mp3") to an absolute URL so
-    // external callers (plugin, third-party clients) can fetch the audio file
-    // directly without knowing the internal backend port.
-    if (data.audio_url && typeof data.audio_url === "string" && data.audio_url.startsWith("/")) {
-      data.audio_url = `${BACKEND_URL}${data.audio_url}`;
-    }
 
     return NextResponse.json(data, {
       status: backendResponse.status,
       headers: corsHeaders(),
     });
   } catch (err) {
-    console.error("[/api/v1/tts] Error:", err);
+    console.error("[/api/v1/simplify] Error:", err);
     return NextResponse.json(
       { error: "Failed to reach backend service" },
       { status: 502, headers: corsHeaders() }
@@ -53,7 +52,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-/** OPTIONS /api/v1/tts — CORS preflight */
+/** OPTIONS /api/v1/simplify — CORS preflight */
 export async function OPTIONS() {
   return new NextResponse(null, { status: 204, headers: corsHeaders() });
 }

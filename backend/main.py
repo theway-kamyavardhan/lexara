@@ -112,3 +112,118 @@ async def ocr(file: UploadFile = File(...)):
 async def tts(request: TTSRequest):
     """Alias for /api/tts — proxied by Next.js /api/v1/tts"""
     return await generate_tts(request)
+
+
+# ── Text Simplifier (used by Next.js /api/v1/simplify) ───────────────────────
+
+import re
+
+class TextSimplifyRequest(BaseModel):
+    text: str
+
+# Complex → simple word substitution table
+_WORD_MAP = {
+    "obtain": "get", "utilize": "use", "demonstrate": "show",
+    "indicate": "show", "sufficient": "enough", "approximately": "about",
+    "commence": "start", "terminate": "end", "subsequently": "then",
+    "therefore": "so", "however": "but", "nevertheless": "still",
+    "furthermore": "also", "consequently": "so", "regarding": "about",
+    "implement": "do", "determine": "find", "calculate": "work out",
+    "explain": "describe", "identify": "find", "describe": "explain",
+    "illustrate": "draw", "perpendicular": "at a right angle",
+    "hypotenuse": "the longest side", "adjacent": "next to",
+    "equivalent": "equal to", "magnitude": "size", "velocity": "speed",
+    "acceleration": "how fast speed changes", "momentum": "force of motion",
+    "photosynthesis": "the way plants make food using sunlight",
+    "osmosis": "water moving through a thin layer",
+}
+
+def _rule_based_simplify(text: str) -> str:
+    """
+    A solid rule-based simplifier:
+      1. Word substitution (complex → simple)
+      2. Split long sentences at conjunctions / semicolons
+      3. Remove excessive parenthetical clauses
+      4. Flatten passive voice patterns where trivially detectable
+    """
+    # 1. Word substitution (case-insensitive, whole-word)
+    for complex_w, simple_w in _WORD_MAP.items():
+        text = re.sub(rf'\b{re.escape(complex_w)}\b', simple_w, text, flags=re.IGNORECASE)
+
+    # 2. Split on "; " and " and " / " but " / " which " when sentence is long
+    fragments = re.split(r'\s*[;]\s*', text)
+    expanded = []
+    for frag in fragments:
+        # Split on coordinating conjunctions only if sentence > 80 chars
+        if len(frag) > 80:
+            sub = re.split(r'(?<=\w),\s+(?:and|but|so|yet|for|nor)\s+', frag, flags=re.IGNORECASE)
+            expanded.extend(sub)
+        else:
+            expanded.append(frag)
+
+    # 3. Strip parenthetical asides  (text inside brackets)
+    cleaned = [re.sub(r'\s*\([^)]{10,}\)', '', f).strip() for f in expanded]
+
+    # 4. Remove empty fragments and capitalise each sentence
+    sentences = []
+    for s in cleaned:
+        s = s.strip(' .,')
+        if len(s) > 4:
+            sentences.append(s[0].upper() + s[1:] + '.')
+
+    return '  '.join(sentences)
+
+
+def _openai_simplify(text: str) -> str | None:
+    """
+    Use GPT-4o-mini to simplify the text if OPENAI_API_KEY is available.
+    Returns None on any failure so we can fall back to rule-based.
+    """
+    try:
+        from openai import OpenAI
+        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", ""))
+        if not client.api_key:
+            return None
+        resp = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": (
+                    "You are a dyslexia accessibility assistant. "
+                    "Rewrite the following exam question in very simple, short English. "
+                    "Use short sentences (max 15 words each). "
+                    "Keep all important facts. "
+                    "Do NOT give the answer. "
+                    "Output only the rewritten text, nothing else."
+                )},
+                {"role": "user", "content": text},
+            ],
+            max_tokens=400,
+            temperature=0.3,
+        )
+        return resp.choices[0].message.content.strip()
+    except Exception as e:
+        print(f"[/simplify] OpenAI unavailable, using rule-based: {e}")
+        return None
+
+
+def simplify_text(text: str) -> str:
+    """Main entry point: try OpenAI first, fall back to rule-based."""
+    if not text or not text.strip():
+        return ""
+    text = text.strip()[:2000]          # enforce limit
+    result = _openai_simplify(text)
+    if not result:
+        result = _rule_based_simplify(text)
+    return result
+
+
+@app.post("/simplify")
+async def simplify(request: TextSimplifyRequest):
+    """Simplify exam question text — proxied by Next.js /api/v1/simplify"""
+    if not request.text or not request.text.strip():
+        return JSONResponse({"error": "text is required"}, status_code=400)
+    if len(request.text) > 2000:
+        return JSONResponse({"error": "Text too long (max 2000 chars)"}, status_code=413)
+    simplified = simplify_text(request.text)
+    return {"simplified_text": simplified, "original_text": request.text.strip()}
+

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lexara Plugin Demo — Sample Exam Integration</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f0f14;
+      color: #e8e8ef;
+      min-height: 100vh;
+      padding: 40px 20px 120px;
+    }
+
+    .container { max-width: 760px; margin: 0 auto; }
+
+    header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 40px; padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    header .logo {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: linear-gradient(135deg, #0071e3, #6e3af0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    header h1 { font-size: 20px; font-weight: 700; }
+    header p  { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+    .badge {
+      margin-left: auto;
+      font-size: 11px; padding: 4px 10px; border-radius: 99px;
+      background: rgba(0,113,227,0.15); color: #60a5fa;
+      border: 1px solid rgba(0,113,227,0.3); font-weight: 600;
+    }
+
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.35); text-transform: uppercase;
+      margin-bottom: 16px; margin-top: 36px;
+    }
+
+    .exam-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .exam-card .q-num {
+      font-size: 11px; font-weight: 700; color: #0071e3;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .question {
+      font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.85);
+      margin-bottom: 16px;
+    }
+    .options { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .options li {
+      padding: 10px 14px; border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      font-size: 14px; color: rgba(255,255,255,0.65);
+      cursor: pointer; transition: background 0.15s, border 0.15s;
+    }
+    .options li:hover {
+      background: rgba(0,113,227,0.15);
+      border-color: rgba(0,113,227,0.35);
+      color: #fff;
+    }
+
+    .tip-box {
+      background: rgba(0,113,227,0.08);
+      border: 1px solid rgba(0,113,227,0.2);
+      border-radius: 12px; padding: 16px 20px;
+      font-size: 13px; color: rgba(255,255,255,0.6);
+      margin-bottom: 24px; line-height: 1.6;
+    }
+    .tip-box strong { color: #60a5fa; }
+
+    .code-block {
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 16px 20px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px; color: rgba(255,255,255,0.7);
+      white-space: pre; overflow-x: auto;
+      margin-bottom: 24px; line-height: 1.7;
+    }
+    .code-block .attr  { color: #7dd3fc; }
+    .code-block .val   { color: #86efac; }
+    .code-block .tag   { color: #c4b5fd; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <div class="logo">📚</div>
+      <div>
+        <h1>Sample Exam — Lexara Plugin Demo</h1>
+        <p>Simulated CBT / exam portal with Lexara accessibility widget embedded</p>
+      </div>
+      <span class="badge">Plugin v1.0</span>
+    </header>
+
+    <!-- How to use tip -->
+    <div class="tip-box">
+      <strong>♿ Lexara widget is active</strong> — look for the floating button in the bottom-right corner.<br>
+      Try: <strong>highlight any question text</strong> → click <em>"Read Selected Text"</em> in the widget.
+      Or click <em>"Read Question (Auto)"</em> to let the plugin detect the first question automatically.
+    </div>
+
+    <!-- Integration snippet -->
+    <p class="section-label">Integration Snippet</p>
+    <div class="code-block"><span class="tag">&lt;script</span>
+  <span class="attr">src</span>=<span class="val">"https://lexara.vercel.app/plugin/lexara-plugin.js"</span>
+  <span class="attr">data-api-key</span>=<span class="val">"YOUR_INSTITUTION_API_KEY"</span>
+<span class="tag">&gt;&lt;/script&gt;</span></div>
+
+    <!-- Exam questions -->
+    <p class="section-label">Subject: Mathematics — Grade 10</p>
+
+    <div class="exam-card">
+      <div class="q-num">Question 1 · 5 Marks</div>
+      <p class="question exam-question">
+        A tree breaks due to a storm and the broken part bends so that the top of the tree
+        touches the ground making an angle of 30° with it. The distance between the foot of
+        the tree and the point where the top touches the ground is 8 m.
+        Find the height of the tree before it broke.
+      </p>
+      <ul class="options">
+        <li>A. 8√3 m</li>
+        <li>B. 4√3 m</li>
+        <li>C. 8/√3 m</li>
+        <li>D. 16/√3 m</li>
+      </ul>
+    </div>
+
+    <div class="exam-card">
+      <div class="q-num">Question 2 · 3 Marks</div>
+      <p class="question exam-question">
+        In ΔABC, right-angled at B, AB = 24 cm, BC = 7 cm. Determine the value of sin A and cos A.
+        Also find the value of tan C.
+      </p>
+      <ul class="options">
+        <li>A. sin A = 7/25, cos A = 24/25, tan C = 24/7</li>
+        <li>B. sin A = 24/25, cos A = 7/25, tan C = 7/24</li>
+        <li>C. sin A = 7/25, cos A = 24/25, tan C = 7/24</li>
+        <li>D. sin A = 24/25, cos A = 7/25, tan C = 24/7</li>
+      </ul>
+    </div>
+
+    <p class="section-label">Subject: Science — Grade 10</p>
+
+    <div class="exam-card">
+      <div class="q-num">Question 3 · 2 Marks</div>
+      <p class="question exam-question">
+        Plaster of Paris should be stored in a moisture-proof container. Explain why,
+        with reference to the chemical reaction that takes place when it is exposed to water.
+      </p>
+    </div>
+
+    <div class="exam-card">
+      <div class="q-num">Question 4 · 4 Marks</div>
+      <p class="question exam-question">
+        The human eye can focus objects at different distances by adjusting the focal length
+        of the eye lens. Explain this process with the help of a neat diagram.
+        Name the property of the eye responsible for this.
+      </p>
+    </div>
+
+  </div>
+
+  <!--
+    ══════════════════════════════════════════════════════════════════
+    LEXARA PLUGIN INTEGRATION — copy this one line into any exam page
+    Change data-api-key to your institution's key.
+    The widget appears automatically.
+    ══════════════════════════════════════════════════════════════════
+  -->
+  <script
+    src="/plugin/lexara-plugin.js"
+    data-api-key="test-api-key-123"
+  ></script>
+
+</body>
+</html>
