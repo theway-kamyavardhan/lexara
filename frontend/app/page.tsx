@@ -401,12 +401,10 @@ export default function Home() {
 
   useEffect(() => {
     if (data) {
-      // Don't save demo data to local storage to avoid confusion
-      const isDemoData = DEMO_QUESTIONS["Maths"].questions[0].id === data.questions[0]?.id || 
-                         DEMO_QUESTIONS["Science"].questions[0].id === data.questions[0]?.id || 
-                         DEMO_QUESTIONS["Hindi"].questions[0].id === data.questions[0]?.id;
-      if (!isDemoData) {
+      try {
         localStorage.setItem("lexara_saved_data", JSON.stringify(data));
+      } catch (e) {
+        console.error("Failed to save to local storage", e);
       }
     }
   }, [data]);
